@@ -1,0 +1,30 @@
+# directories
+*build*/
+cmake_tmp/
+*tmp*/
+
+# cache
+*cache*
+
+# parked backup files
+*backup*
+
+# cmake / ninja
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+build.ninja
+.ninja_deps
+.ninja_log
+compile_commands.json
+
+# binary artifacts
+*.o
+*.obj
+*.a
+*.elf
+*.axf
+*.map
+*.bin
+*.hex
+*.d
