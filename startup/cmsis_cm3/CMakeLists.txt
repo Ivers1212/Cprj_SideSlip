@@ -1,20 +1,19 @@
-# middleware/ch395/CMakeLists.txt
+# ${PROJECT_SOURCE_DIR}/startup/cmsis_cm3/CMakeLists.txt
+# CMSIS Cortex-M3 core headers
 
-add_library(start_obj OBJECT)
+# -----------------------------------------------------------------------------#
+# CMSIS Core 是头文件库，不产生目标文件。
+#
+# 这里提供：
+#   core_cm3.h
+#   cmsis_compiler.h
+#   cmsis_gcc.h
+#   cmsis_version.h
 
-target_include_directories(start_obj PUBLIC
+add_library(cmsis_cm3 INTERFACE)
+
+target_include_directories(cmsis_cm3 INTERFACE
   "${CMAKE_CURRENT_SOURCE_DIR}"
-  "${CMAKE_CURRENT_SOURCE_DIR}/inc"
 )
 
-target_sources(start_obj PRIVATE
-  startup_stm32f103xb.s
-  stm32f1xx_it.c
-  sys_stubs.c
-  system_stm32f1xx.c
-)
-
-target_link_libraries(start_obj PRIVATE
-  mcu_compile
-)
-
+# -----------------------------------------------------------------------------#
