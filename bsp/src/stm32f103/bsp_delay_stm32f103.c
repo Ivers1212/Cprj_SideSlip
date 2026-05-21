@@ -10,7 +10,7 @@
 /* Private includes
  * **************************************************************/
 #include "bsp_delay.h" // 包含与本文件相关的头文件，暴露公共接口
-#include "stm32f103xb.h"
+#include "stm32f1xx.h"
 #include "stm32f1xx_it.h"
 #include <stdbool.h> // 布尔类型
 #include <stdint.h>  // 标准整数类型

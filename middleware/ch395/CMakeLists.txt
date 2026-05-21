@@ -1,20 +1,38 @@
-# middleware/ch395/CMakeLists.txt
+# ${PROJECT_SOURCE_DIR}/middleware/ch395/CMakeLists.txt
+# CH395 middleware
 
-add_library(ch395_lib STATIC)
+# -----------------------------------------------------------------------------#
+# 创建 CH395 中间件库
+#
+# CH395 是网络芯片协议/命令封装层。
+# 它不应该直接操作 MCU 寄存器。
+# 如果需要串口/SPI/延时，应通过 bsp_ch395.h、bsp_uart.h、bsp_delay.h 等 BSP 接口实现。
 
-target_include_directories( ch395_lib PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}
+add_library(ch395 STATIC)
+
+# -----------------------------------------------------------------------------#
+# 头文件路径
+
+target_include_directories(ch395 PUBLIC
+  "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
-target_sources(ch395_lib PRIVATE
-  ch395hw.c
-  ch395cmd.c
+# -----------------------------------------------------------------------------#
+# 源文件
+
+target_sources(ch395 PRIVATE
   ch395.c
+  ch395cmd.c
+  ch395hw.c
 )
 
-target_link_libraries(ch395_lib PUBLIC
-  mcu_compile
-  bsp_lib
-  uart_lib
+# -----------------------------------------------------------------------------#
+# 依赖 BSP
+#
+# ch395hw.c 这类硬件适配文件通常会调用 bsp 层接口。
+
+target_link_libraries(ch395 PUBLIC
+  bsp
 )
 
+# -----------------------------------------------------------------------------#
